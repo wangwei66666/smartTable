@@ -10,6 +10,7 @@ import com.bin.david.form.core.TableConfig;
 import com.bin.david.form.data.format.bg.ICellBackgroundFormat;
 import com.bin.david.form.utils.DrawUtils;
 
+import java.lang.ref.Reference;
 import java.lang.ref.SoftReference;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +22,7 @@ import java.util.Map;
 public class TextDrawFormat<T> implements IDrawFormat<T> {
 
 
-    private Map<String,SoftReference<String[]>> valueMap; //避免产生大量对象
+    private Map<String, String[]> valueMap; //避免产生大量对象
 
     public TextDrawFormat() {
         valueMap = new HashMap<>();
@@ -72,12 +73,12 @@ public class TextDrawFormat<T> implements IDrawFormat<T> {
     protected String[] getSplitString(String val){
         String[] values = null;
         if(valueMap.get(val)!=null){
-            values= valueMap.get(val).get();
+            values= valueMap.get(val);
         }
         if(values == null){
             values = val.split("\n");
 
-            valueMap.put(val, new SoftReference<>(values));
+            valueMap.put(val, values);
         }
         return values;
     }
