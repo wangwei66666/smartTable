@@ -166,7 +166,12 @@ public class TableMeasurer<T> {
                  */
                 if (!isArrayColumn) {
                     if(rangeCells !=null) {
-                        Cell cell = rangeCells[position][columnPos];
+                        Cell cell = null;
+                        try {
+                            cell = rangeCells[position][columnPos];
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                         if (cell != null) {
                             if (cell.row != Cell.INVALID && cell.col != Cell.INVALID) {
                                 cell.width = width;
