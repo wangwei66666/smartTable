@@ -234,8 +234,8 @@ public class SmartTable<T> extends View implements OnTableChangeListener {
                     xAxis.setHeight(info.getTopHeight());
                     yAxis.setWidth(info.getyAxisWidth());
                     requestReMeasure();
-                    postInvalidate();
                     isNotifying.set(false);
+                    postInvalidate();
                     //long end = System.currentTimeMillis();
                     //Log.e("smartTable","notifyDataChanged timeMillis="+(end-start));
                 }
